@@ -9,6 +9,7 @@ flake8="==6.0.0"
 flake8-isort="==6.0.0"
 black="==22.12.0"
 pylint-django="==2.5.3"
+django-debug-toolbar = "==3.8.1"
 
 [packages]
 django="==4.0.8"
@@ -19,6 +20,8 @@ djangorestframework="==3.14.0"
 django-cors-headers="==3.13.0"
 psycopg2="==2.9.5"
 werkzeug = {version = "==2.2.2", extras = ["watchdog"]}
+whitenoise = "==6.3.0"
+argon2-cffi = "==21.3.0"
 
 [requires]
 python_version = "3.9"
