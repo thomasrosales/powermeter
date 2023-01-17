@@ -26,7 +26,7 @@ class MeterViewSet(ModelViewSet):
         measure = (
             Measure.objects.filter(meter__meter_key=meter_key)
             .annotate(max_consumption=Max("consumption"))
-            .order_by("-consumption")
+            .order_by("-max_consumption")
             .first()
         )
         serializer = self.get_serializer(measure)
@@ -36,8 +36,8 @@ class MeterViewSet(ModelViewSet):
     def min_consumption(self, request, meter_key=None):
         measure = (
             Measure.objects.filter(meter__meter_key=meter_key)
-            .annotate(max_consumption=Min("consumption"))
-            .order_by("consumption")
+            .annotate(min_consumption=Min("consumption"))
+            .order_by("min_consumption")
             .first()
         )
         serializer = self.get_serializer(measure)
