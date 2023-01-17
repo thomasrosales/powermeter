@@ -1,5 +1,12 @@
 # Powermeter
 
+
+## Decisiones de diseño
+
+Se decidió utilizar cookicutter https://github.com/cookiecutter/cookiecutter-django que permite crear estructuras de proyectos escalables y mantenibles en el tiempo. Tiene la particularidad de que crea un projecto preparado para producción. Dado esto, se eliminaron algunas particularidades que nos ofrece este creador de proyectos. 
+
+Por otro lado, se utilizó una vista sola llamada MeterViewSet. Esta vista hereda de ViewSet que permite cubrir casos comunes y repetitivos. En este caso, se decidió dejar el viewset completo esto provee el comportamiento por defecto para crear, actualizar, listar, eliminar y obtener un medidor (meter). Se le agregaron algunos actions para completar lo solicitado por el ejercicio en donde, dado un meter particular, se asocian "actions" o endpoints a la vista.
+
 ## Ejecutar proyecto
 
 >```bash
