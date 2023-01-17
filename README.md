@@ -9,6 +9,10 @@
 > python manager.py runserver
 >```
 
+>```bash
+> docker-compose -p powermeter up --build -d
+>```
+
 
 
 ## Endpoints
