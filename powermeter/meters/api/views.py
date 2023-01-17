@@ -1,4 +1,4 @@
-from django.db.models import Max, Min, Count, Sum, Avg
+from django.db.models import Sum, Avg
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -25,8 +25,7 @@ class MeterViewSet(ModelViewSet):
     def max_consumption(self, request, meter_key=None):
         measure = (
             Measure.objects.filter(meter__meter_key=meter_key)
-            .annotate(max_consumption=Max("consumption"))
-            .order_by("-max_consumption")
+            .order_by("-consumption")
             .first()
         )
         serializer = self.get_serializer(measure)
@@ -36,8 +35,7 @@ class MeterViewSet(ModelViewSet):
     def min_consumption(self, request, meter_key=None):
         measure = (
             Measure.objects.filter(meter__meter_key=meter_key)
-            .annotate(min_consumption=Min("consumption"))
-            .order_by("min_consumption")
+            .order_by("consumption")
             .first()
         )
         serializer = self.get_serializer(measure)

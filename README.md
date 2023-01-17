@@ -1,5 +1,16 @@
 # Powermeter
 
+## Ejecutar proyecto
+
+>```bash
+> python -m pipenv sync
+> python -m pipenv shell
+> python manager.py migrate
+> python manager.py runserver
+>```
+
+
+
 ## Endpoints
 
 ------------------------------------------------------------------------------------------
