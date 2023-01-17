@@ -49,7 +49,6 @@ Con respecto a la actividad 2 se creó un script dentro de la carpeta activity2,
 > | http code    | content-type                      | response |
 > |---------------|----------|---------------------------------------------------------------------|
 > | `200`        | `application/json`        | JSON  |                         |
-                                                             |
 
 ##### Example cURL
 
