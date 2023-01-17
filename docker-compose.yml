@@ -9,7 +9,5 @@ services:
                 SYNC_ARGS: "--dev"
         env_file:
             -   ./docker/envs/.django
-        environment:
-            - DB_HOST=db
         ports:
             - "8000:8000"
