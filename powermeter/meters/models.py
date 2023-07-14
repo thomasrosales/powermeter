@@ -3,6 +3,7 @@ from model_utils.models import TimeStampedModel
 
 
 class Instrument(TimeStampedModel):
+    meter_key = models.CharField(unique=True, max_length=200)
     name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):

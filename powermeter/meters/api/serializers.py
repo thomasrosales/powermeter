@@ -3,7 +3,7 @@ from rest_framework import serializers
 from ..models import Measure, Instrument
 
 
-class MeterSerializer(serializers.ModelSerializer):
+class InstrumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Instrument
         fields = (
@@ -26,7 +26,7 @@ class MeasureSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "consumption",
-            "meter",
+            "instrument",
             "created",
             "modified",
         )
