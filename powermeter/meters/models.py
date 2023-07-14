@@ -10,7 +10,7 @@ class Instrument(TimeStampedModel):
 
 
 class Measure(TimeStampedModel):
-    consumption = models.PositiveIntegerField(deafult=0)
+    consumption = models.PositiveIntegerField(default=0)
     instrument = models.ForeignKey(Instrument, related_name="measures", on_delete=models.CASCADE)
 
     def __str__(self):

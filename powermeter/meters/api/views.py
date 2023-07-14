@@ -4,13 +4,13 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from ..models import Measure, Meter
+from ..models import Measure, Instrument
 from .serializers import MeasureSerializer, MeterSerializer
 
 
 class MeterViewSet(ModelViewSet):
     serializer_class = MeterSerializer
-    queryset = Meter.objects.all()
+    queryset = Instrument.objects.all()
     lookup_field = "meter_key"
 
     @action(detail=True, methods=["post"], serializer_class=MeasureSerializer)

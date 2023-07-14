@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from .models import Measure, Meter
+from .models import Measure, Instrument
 
 
-@admin.register(Meter)
+@admin.register(Instrument)
 class MeterAdmin(admin.ModelAdmin):
     pass
 

@@ -1,11 +1,11 @@
 from rest_framework import serializers
 
-from ..models import Measure, Meter
+from ..models import Measure, Instrument
 
 
 class MeterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Meter
+        model = Instrument
         fields = (
             "id",
             "meter_key",
