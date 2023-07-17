@@ -10,9 +10,9 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ## Ejecutar proyecto
 
 >```bash
-> load .env environments
 > poetry install
 > poetry shell
+> source load_envs.sh
 > python manager.py migrate
 > python manager.py runserver
 >```
