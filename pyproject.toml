@@ -27,3 +27,4 @@ django-debug-toolbar = "==3.8.1"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+faker = "^19.1.0"

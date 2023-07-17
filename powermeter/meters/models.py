@@ -23,4 +23,4 @@ class Tag(TimeStampedModel):
     instrument = models.ManyToManyField(Instrument, related_name="tags")
 
     def __str__(self):
-        return f"Measure's Instrument {self.instrument_id} consumption: {self.consumption}"
+        return f"{self.name}"
