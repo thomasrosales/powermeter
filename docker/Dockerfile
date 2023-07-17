@@ -1,25 +1,6 @@
-FROM python:3.9.0 as base
+FROM python:3.8.16
 
 ARG SYNC_ARGS
-
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONFAULTHANDLER 1
-
-FROM base AS python-deps
-
-COPY Pipfile* .
-
-RUN pip install pipenv \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends gcc \
-    && PIPENV_VENV_IN_PROJECT=1 pipenv sync ${SYNC_ARGS}
-
-FROM base AS runtime
-
-COPY --from=python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
 
 RUN mkdir /app \
     && mkdir /app/scripts \
@@ -30,6 +11,11 @@ COPY . /app
 COPY ./docker/scripts /app/scripts
 
 WORKDIR /app
+
+RUN pip install poetry \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends gcc \
+    && poetry install ${SYNC_ARGS}
 
 RUN chmod +rwx ./scripts/entrypoint.sh
 

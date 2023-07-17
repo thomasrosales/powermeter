@@ -5,8 +5,6 @@ services:
         build:
             dockerfile: docker/Dockerfile
             context: .
-            args:
-                SYNC_ARGS: "--dev"
         env_file:
             -   ./docker/envs/.django
         ports:
