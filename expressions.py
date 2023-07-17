@@ -15,6 +15,7 @@ Measure.objects.filter(
 # PROBAR: .values_list("created__year").distinct()
 
 ## NOR
+
 Measure.objects.filter(~Q(created__year=2022))
 
 ## AND
@@ -31,7 +32,41 @@ measure_before_2022 = Q(created__lt=datetime(2022, 1,1))
 
 Measure.objects.filter(measure_after_2023 | measure_before_2022)
 
-# F
+# F - Agrupamiento
 
-# Agrupamiento
+count_instruments_by_measures  = (   
+    Measure.objects
+    .values("instrument_id")
+    .annotate(total_measures=Count("id"))
+)
 
+instruments_with_more_than_100_measures = (
+    Measure.objects
+    .values("instrument_id")
+    .annotate(total_measures=Count("id"))
+    .filter(total_measures__gt=10)
+)
+
+tags_by_instruments = (
+    Instrument.objects
+    .values("tags__name")
+    .annotate(total_tags=Count("id"))
+)
+
+instruments_avg_consumption = (
+    Measure.objects
+    .values("instrument_id")
+    .annotate(consumption=Avg("consumption"))
+)
+
+
+# Calcular impuestos por consumo por instrumento
+instruments = (
+    Measure.objects
+    .filter(created__year=2023)
+    .annotate(taxes=F("consumption") * 5.5)
+    .values("instrument_id")
+    .annotate(total=Sum("taxes"))
+    .values_list("id", "total")
+    .order_by("total")
+)
