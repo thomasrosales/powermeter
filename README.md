@@ -16,8 +16,8 @@ Con respecto a la actividad 2 se creó un script dentro de la carpeta activity2,
 ## Ejecutar proyecto
 
 >```bash
-> python -m pipenv sync --dev
-> python -m pipenv shell
+> poetry install
+> poetry shell
 > python manager.py migrate
 > python manager.py runserver
 >```
