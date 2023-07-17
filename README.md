@@ -30,7 +30,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Lister todos los medidores
 
 <details>
- <summary><code>GET</code> <code><b>/meters/</b></code></summary>
+ <summary><code>GET</code> <code><b>/instruments/</b></code></summary>
 
 ##### Parameters
 
@@ -48,7 +48,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/
 > ```
 
 </details>
@@ -57,7 +57,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Obtener un medidor en particular
 
 <details>
- <summary><code>GET</code> <code><b>/meters/METER_KEY/</b></code></summary>
+ <summary><code>GET</code> <code><b>/instruments/METER_KEY/</b></code></summary>
 
 ##### Parameters
 
@@ -75,7 +75,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/meter123/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/meter123/
 > ```
 
 </details>
@@ -84,7 +84,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Create un medidor
 
 <details>
- <summary><code>POST</code> <code><b>/meters/</b></code></summary>
+ <summary><code>POST</code> <code><b>/instruments/</b></code></summary>
 
 ##### Parameters
 
@@ -103,7 +103,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X POST -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>","name":"<NAME>"}' http://127.0.0.1:8000/meters/
+>  curl -X POST -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>","name":"<NAME>"}' http://127.0.0.1:8000/api/instruments/
 > ```
 
 </details>
@@ -111,7 +111,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Actualizar un medidor
 
 <details>
- <summary><code>PUT/PATCH</code> <code><b>/meters/METERKEY/</b></code></summary>
+ <summary><code>PUT/PATCH</code> <code><b>/instruments/METERKEY/</b></code></summary>
 
 ##### Parameters
 
@@ -130,11 +130,11 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X PUT -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>","name":"<NAME>"}' http://127.0.0.1:8000/meters/<METER-KEY>/
+>  curl -X PUT -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>","name":"<NAME>"}' http://127.0.0.1:8000/api/instruments/<METER-KEY>/
 > ```
 
 > ```bash
->  curl -X PATCH -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>"}' http://127.0.0.1:8000/meters/<METER-KEY>/
+>  curl -X PATCH -H 'Content-Type: application/json' -d '{"meter_key":"<METER-KEY>"}' http://127.0.0.1:8000/api/instruments/<METER-KEY>/
 > ```
 
 </details>
@@ -143,7 +143,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Eliminar un medidor
 
 <details>
- <summary><code>DELETE</code> <code><b>/meters/METERKEY/</b></code></summary>
+ <summary><code>DELETE</code> <code><b>/instruments/METERKEY/</b></code></summary>
 
 ##### Parameters
 
@@ -161,7 +161,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X DELETE http://127.0.0.1:8000/meters/<METER-KEY>/
+>  curl -X DELETE http://127.0.0.1:8000/api/instruments/<METER-KEY>/
 > ```
 
 </details>
@@ -170,7 +170,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Agregar una medida
 
 <details>
- <summary><code>POST</code> <code><b>/meters/METERKEY/add_measure/</b></code></summary>
+ <summary><code>POST</code> <code><b>/instruments/METERKEY/add_measure/</b></code></summary>
 
 ##### Parameters
 
@@ -189,7 +189,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X POST -H 'Content-Type: application/json' -d '{"consumption": 10}' http://127.0.0.1:8000/meters/<METER-KEY>/add_measure/
+>  curl -X POST -H 'Content-Type: application/json' -d '{"consumption": 10}' http://127.0.0.1:8000/api/instruments/<METER-KEY>/add_measure/
 > ```
 
 
@@ -199,7 +199,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Consumo promedio del medidor
 
 <details>
- <summary><code>GET</code> <code><b>/meters/METERKEY/avg_consumption/</b></code></summary>
+ <summary><code>GET</code> <code><b>/instruments/METERKEY/avg_consumption/</b></code></summary>
 
 ##### Parameters
 
@@ -218,7 +218,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/<METER-KEY>/avg_consumption/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/<METER-KEY>/avg_consumption/
 > ```
 
 
@@ -228,7 +228,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Consumo máximo del medidor
 
 <details>
- <summary><code>GET</code> <code><b>/meters/METERKEY/max_consumption/</b></code></summary>
+ <summary><code>GET</code> <code><b>/api/instruments/METERKEY/max_consumption/</b></code></summary>
 
 ##### Parameters
 
@@ -247,7 +247,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/<METER-KEY>/max_consumption/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/<METER-KEY>/max_consumption/
 > ```
 
 
@@ -256,7 +256,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Consumo mínimo del medidor
 
 <details>
- <summary><code>GET</code> <code><b>/meters/METERKEY/min_consumption/</b></code></summary>
+ <summary><code>GET</code> <code><b>/instruments/METERKEY/min_consumption/</b></code></summary>
 
 ##### Parameters
 
@@ -275,7 +275,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/<METER-KEY>/min_consumption/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/<METER-KEY>/min_consumption/
 > ```
 
 
@@ -284,7 +284,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 #### Consumo total del medidor
 
 <details>
- <summary><code>GET</code> <code><b>/meters/METERKEY/total_consumption/</b></code></summary>
+ <summary><code>GET</code> <code><b>/instruments/METERKEY/total_consumption/</b></code></summary>
 
 ##### Parameters
 
@@ -303,7 +303,7 @@ Por otro lado, se utilizó una vista sola llamada InstrumentViewSet. Esta vista 
 ##### Example cURL
 
 > ```bash
->  curl -X GET http://127.0.0.1:8000/meters/<METER-KEY>/total_consumption/
+>  curl -X GET http://127.0.0.1:8000/api/instruments/<METER-KEY>/total_consumption/
 > ```
 
 
