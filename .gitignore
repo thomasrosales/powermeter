@@ -335,4 +335,4 @@ docker/.envs/*
 !docker/.envs/development/
 
 .idea/
-db.sqlite
+# db.sqlite
