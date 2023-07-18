@@ -1,6 +1,5 @@
 # Performance
 
-
 # N+1 QUERY
 
 instruments = Instrument.objects.all()[:2]

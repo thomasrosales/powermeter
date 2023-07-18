@@ -30,7 +30,7 @@ Measure.objects.filter(
 
 # COUNT
 
-count_instruments_by_measures  = (   
+count_instruments_by_measures = (   
     Measure.objects
     # Group By
     .values("instrument_id")
