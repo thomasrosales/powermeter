@@ -3,9 +3,9 @@ from datetime import datetime
 
 # Q
 
-# Ejmplo: AND - OR - NOT
+# Ejemplo: AND - OR - NOT
 
-## Medidas que no sean del 20220
+## Medidas que no sean del 2022
 Measure.objects.filter(
     Q(created__gte=datetime(2023, 1, 1))
     | Q(created__lt=datetime(2022, 1,1)) 
@@ -24,13 +24,6 @@ Measure.objects.filter(
     Q(created__gte=datetime(2020, 1, 1))
     & ~Q(instrument__name__startswith="m") 
 ) 
-
-# BUENAS PRACTICAS
-
-measure_after_2023 = Q(created__gte=datetime(2023, 1, 1))
-measure_before_2022 = Q(created__lt=datetime(2022, 1,1))
-
-Measure.objects.filter(measure_after_2023 | measure_before_2022)
 
 # F - Agrupamiento
 
@@ -71,3 +64,11 @@ instruments = (
     .values_list("id", "total")
     .order_by("total")
 )
+
+
+# BUENAS PRACTICAS
+
+measure_after_2023 = Q(created__gte=datetime(2023, 1, 1))
+measure_before_2022 = Q(created__lt=datetime(2022, 1,1))
+
+Measure.objects.filter(measure_after_2023 | measure_before_2022)
