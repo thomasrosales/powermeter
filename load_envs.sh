@@ -1,5 +1,5 @@
 export USE_DOCKER=False
-export PYTHONBREAKPOINT=ipdb.set_trace
+#export PYTHONBREAKPOINT=ipdb.set_trace
 export DJANGO_READ_DOT_ENV_FILE=True
 export DJANGO_SETTINGS_MODULE=config.settings.local
 export DATABASE_URL=sqlite:///db.sqlite

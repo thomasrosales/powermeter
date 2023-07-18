@@ -61,6 +61,7 @@ instruments_avg_consumption = (
 
 
 # Calcular impuestos por consumo por instrumento
+
 instruments = (
     Measure.objects
     .filter(created__year=2023)
