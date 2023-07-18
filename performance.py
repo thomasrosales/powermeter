@@ -5,11 +5,16 @@
 
 instruments = Instrument.objects.all()[:2]
 
+instruments # LAZY
+
 for instrument in instruments:
     print(instrument.tags.all())
 
 # NOTA: realiza 1 query por cada instrumento para obtener los tags
 # carga en memoria
+
+# ACLARAR QUE SOLO EN EL CASO QUE SE VAYA A USAR LA RELACION 
+# A VECES NO LO REQUIERE
 
 # SOLUTION
 

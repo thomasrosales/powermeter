@@ -32,6 +32,7 @@ Measure.objects.filter(
 
 count_instruments_by_measures  = (   
     Measure.objects
+    # Group By
     .values("instrument_id")
     .annotate(total_measures=Count("id"))
 )
@@ -69,7 +70,9 @@ TAX = 5.5
 bill_taxes = (
     Measure.objects
     .filter(created__year=2023)
+    # Multiplica cada consumo X el TAX
     .annotate(taxes=F("consumption") * TAX)
+    # Agrupa por instrument id y suma total
     .values("instrument_id")
     .annotate(total=Sum("taxes"))
     .values_list("instrument_id", "total")
