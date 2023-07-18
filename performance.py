@@ -15,46 +15,46 @@ for instrument in instruments:
 
 ## MANY_TO_ONE or MANY_TO_MANY
 
-Instrument.prefetch_related("tags", "measures").all()
+Instrument.objects.prefetch_related("tags", "measures").all()[:2]
 
 ## ONE_TO_MANY
 
-Measure.select_related("instrument").all()[:5]
+Measure.objects.select_related("instrument").all()[:2]
 
 # Mistake 1: Busacar usando el ORM
 # Las medidas de los instrumentos que empiezan con M
 
-for measure in Measure.objects.all():
+for measure in Measure.objects.all()[:2]:
     if measure.instrument.name.startswith("m"):
         print(f"Encontre: {measure.id}")
 
 # Soluction 1
 # Filtra el ORM directamente
 
-for m in Measure.objects.select_related("instrument").filter(instrument__name__startswith="m"):
+for m in Measure.objects.filter(instrument__name__startswith="m"):
     print(f"Encontre {m.id}")        
 
 # Solution: 2
 # Filtro y obtengo la informacion que necesito
 
-for m_id in Measure.objects.select_related("instrument").filter(instrument__name__startswith="m").values_list("id", flat=True):
+for m_id in Measure.objects.filter(instrument__name__startswith="m").values_list("id", flat=True):
     print(f"Encontre: {m_id}")
 
 
 ## Mistake 2: verificar si un objeto existe
 
 try:
-    instrument = Instrument.objects.get()
+    instrument = Instrument.objects.get(id=999)
 except Instrument.DoesNotExist as e:
     print(e)
 
-instrument = Instrument.objects.filter(id=...)
+instrument = Instrument.objects.filter(id=999)
 if len(instrument) == 0:
     print("no existe")
 
 ## Soluition 1
 
-if Instrument.objects.filter(id=...).exists():
+if Instrument.objects.filter(id=999).exists():
     # existe
 
 

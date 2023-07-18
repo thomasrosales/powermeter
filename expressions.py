@@ -27,24 +27,32 @@ Measure.objects.filter(
 
 # F - Agrupamiento
 
+# COUNT
+
 count_instruments_by_measures  = (   
     Measure.objects
     .values("instrument_id")
     .annotate(total_measures=Count("id"))
 )
 
-instruments_with_more_than_100_measures = (
+# HAVING
+
+instruments_with_more_than_10_measures = (
     Measure.objects
     .values("instrument_id")
     .annotate(total_measures=Count("id"))
     .filter(total_measures__gt=10)
 )
 
+# COUNT
+
 tags_by_instruments = (
     Instrument.objects
     .values("tags__name")
     .annotate(total_tags=Count("id"))
 )
+
+# AVG
 
 instruments_avg_consumption = (
     Measure.objects
@@ -55,13 +63,15 @@ instruments_avg_consumption = (
 
 # Calcular impuestos por consumo por instrumento
 
-instruments = (
+TAX = 5.5
+
+bill_taxes = (
     Measure.objects
     .filter(created__year=2023)
-    .annotate(taxes=F("consumption") * 5.5)
+    .annotate(taxes=F("consumption") * TAX)
     .values("instrument_id")
     .annotate(total=Sum("taxes"))
-    .values_list("id", "total")
+    .values_list("instrument_id", "total")
     .order_by("total")
 )
 
