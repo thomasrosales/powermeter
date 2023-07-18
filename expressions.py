@@ -6,13 +6,14 @@ from datetime import datetime
 # Ejemplo: AND - OR - NOT
 
 ## Medidas que no sean del 2022
-Measure.objects.filter(
+
+measures = Measure.objects.filter(
     Q(created__gte=datetime(2023, 1, 1))
     | Q(created__lt=datetime(2022, 1,1)) 
 ) 
 
 
-# PROBAR: .values_list("created__year").distinct()
+# PROBAR: measures.values_list("created__year").distinct()
 
 ## NOR
 
