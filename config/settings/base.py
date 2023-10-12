@@ -259,3 +259,8 @@ CORS_URLS_REGEX = r"^/api/.*$"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+# Base Schema for all application
+GRAPHENE = {
+    "SCHEMA": "powermeter.graphql.schemas.schema"
+}

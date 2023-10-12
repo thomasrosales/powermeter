@@ -282,6 +282,18 @@ python-versions = "*"
 tests = ["asttokens", "pytest", "littleutils", "rich"]
 
 [[package]]
+name = "faker"
+version = "19.9.0"
+description = "Faker is a Python package that generates fake data for you."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+python-dateutil = ">=2.4"
+typing-extensions = {version = ">=3.10.0.1", markers = "python_version <= \"3.8\""}
+
+[[package]]
 name = "flake8"
 version = "5.0.4"
 description = "the modular source code checker: pep8 pyflakes and co"
@@ -680,6 +692,17 @@ python-versions = ">=3.7,<4.0"
 pylint = ">=1.7"
 
 [[package]]
+name = "python-dateutil"
+version = "2.8.2"
+description = "Extensions to the standard Python datetime module"
+category = "main"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "pytz"
 version = "2023.3"
 description = "World timezone definitions, modern and historical"
@@ -832,7 +855,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.0"
-content-hash = "4badd8c6848994cfe5d739e67c6f1ae11f96c79795a37d046676c07783eacde9"
+content-hash = "133679b8888065e29dff3efd6e37a10e500142fe8288f75984106f93fd723a57"
 
 [metadata.files]
 aniso8601 = [
@@ -1031,6 +1054,10 @@ djangorestframework = [
 executing = [
     {file = "executing-1.2.0-py2.py3-none-any.whl", hash = "sha256:0314a69e37426e3608aada02473b4161d4caf5a4b244d1d0c48072b8fee7bacc"},
     {file = "executing-1.2.0.tar.gz", hash = "sha256:19da64c18d2d851112f09c287f8d3dbbdf725ab0e569077efb6cdcbd3497c107"},
+]
+faker = [
+    {file = "Faker-19.9.0-py3-none-any.whl", hash = "sha256:85468e16d4a9a8712bfdb98ba55aaf17c60658266a76958d099aee6a18c0a6c5"},
+    {file = "Faker-19.9.0.tar.gz", hash = "sha256:d75401c631a991b32d3595f26250f42c007cc32653ac3e522b626f3d80770571"},
 ]
 flake8 = [
     {file = "flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248"},
@@ -1310,6 +1337,10 @@ pylint-django = [
 pylint-plugin-utils = [
     {file = "pylint_plugin_utils-0.8.2-py3-none-any.whl", hash = "sha256:ae11664737aa2effbf26f973a9e0b6779ab7106ec0adc5fe104b0907ca04e507"},
     {file = "pylint_plugin_utils-0.8.2.tar.gz", hash = "sha256:d3cebf68a38ba3fba23a873809155562571386d4c1b03e5b4c4cc26c3eee93e4"},
+]
+python-dateutil = [
+    {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
+    {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 pytz = [
     {file = "pytz-2023.3-py2.py3-none-any.whl", hash = "sha256:a151b3abb88eda1d4e34a9814df37de2a80e301e68ba0fd856fb9b46bfbbbffb"},
