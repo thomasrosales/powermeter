@@ -5,6 +5,8 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from graphene_django.views import GraphQLView
+from graphql_jwt.decorators import jwt_cookie
+
 from config import api
 
 urlpatterns = [
@@ -22,7 +24,7 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += [
     # API base url
     path("api/", include(api)),
-    path("graphql/", GraphQLView.as_view(graphiql=True)),
+    path("graphql/", jwt_cookie(GraphQLView.as_view(graphiql=True))),
 ]
 
 if settings.DEBUG:

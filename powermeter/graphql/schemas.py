@@ -1,14 +1,15 @@
 from graphene import ObjectType, Schema
 
-from powermeter.meters import schema as meters_schema
+from powermeter.meters.schema import MetersQuery, MetersMutation
+from .jwt import JWTMutation
 
 
 # Si hay mas schemas se separar por como y se agregan como herencia
-class Query(meters_schema.Query, ObjectType):
+class Query(MetersQuery, ObjectType):
     pass
 
 
-class Mutation(meters_schema.Mutation, ObjectType):
+class Mutation(JWTMutation, MetersMutation, ObjectType):
     pass
 
 

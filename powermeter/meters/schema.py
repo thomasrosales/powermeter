@@ -1,6 +1,7 @@
 import graphene
 from graphene import ObjectType, Mutation
 from graphene_django import DjangoObjectType
+from graphql_jwt.decorators import login_required
 
 from .models import Instrument, Measure
 
@@ -26,20 +27,23 @@ class InstrumentType(DjangoObjectType):
         return self.measures.all()
 
 
-class Query(ObjectType):
+class MetersQuery(ObjectType):
     all_instruments = graphene.List(InstrumentType)
     all_measures = graphene.List(MeasureType)
     instrument = graphene.Field(InstrumentType, id=graphene.Int(), name=graphene.String())
     measure = graphene.Field(MeasureType, id=graphene.Int())  # single field with the same type. Accept parameters like ID
 
+    @login_required
     def resolve_all_instruments(self, info, **kwargs):
         return Instrument.objects.all()
 
+    @login_required
     def resolve_all_measures(self, info, **kwargs):
         return Measure.objects.all()
 
     # Single Instrument query
 
+    @login_required
     def resolve_instrument(self, info, **kwargs):
         id = kwargs.get("id")
         name = kwargs.get("name")
@@ -52,7 +56,7 @@ class Query(ObjectType):
 
         return None
 
-
+    @login_required
     def resolve_measure(self, info, **kwargs):
         id = kwargs.get("id")
 
@@ -70,6 +74,7 @@ class InstrumentCreateMutation(Mutation):
 
     instrument = graphene.Field(InstrumentType)
 
+    @login_required
     def mutate(self, info, name, meter_key, **kwargs):
         instrument = Instrument.objects.create(name=name, meter_key=meter_key)
         return InstrumentCreateMutation(instrument=instrument)
@@ -83,6 +88,7 @@ class InstrumentAddMeasureMutation(Mutation):
 
     instrument = graphene.Field(InstrumentType)
 
+    @login_required
     def mutate(self, info, id, consumption, **kwargs):
         if consumption <= 0:
             raise Exception("Invalid")
@@ -101,6 +107,7 @@ class InstrumentUpdateMutation(Mutation):
 
     instrument = graphene.Field(InstrumentType)
 
+    @login_required
     def mutate(self, info, id, name=None, meter_key=None):
         # through an error if it does not exist
         instrument = Instrument.objects.get(pk=id)
@@ -119,6 +126,7 @@ class InstrumentDeleteMutation(Mutation):
 
     instrument = graphene.Field(InstrumentType)
 
+    @login_required
     def mutate(self, info, id):
         # through an error if it does not exist
         instrument = Instrument.objects.get(pk=id)
@@ -127,7 +135,7 @@ class InstrumentDeleteMutation(Mutation):
         return InstrumentDeleteMutation(instrument=None)
 
 
-class Mutation:
+class MetersMutation:
     create_instrument = InstrumentCreateMutation.Field()
     update_instrument = InstrumentUpdateMutation.Field()
     delete_instrument = InstrumentDeleteMutation.Field()
