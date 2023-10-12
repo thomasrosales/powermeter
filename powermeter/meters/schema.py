@@ -29,17 +29,17 @@ class InstrumentType(DjangoObjectType):
 
 class MetersQuery(ObjectType):
     all_instruments = graphene.List(InstrumentType)
-    all_measures = graphene.List(MeasureType)
+    # all_measures = graphene.List(MeasureType)
     instrument = graphene.Field(InstrumentType, id=graphene.Int(), name=graphene.String())
-    measure = graphene.Field(MeasureType, id=graphene.Int())  # single field with the same type. Accept parameters like ID
+    # FIXME: replaced by relay measure = graphene.Field(MeasureType, id=graphene.Int())  # single field with the same type. Accept parameters like ID
 
     @login_required
     def resolve_all_instruments(self, info, **kwargs):
         return Instrument.objects.all()
 
-    @login_required
-    def resolve_all_measures(self, info, **kwargs):
-        return Measure.objects.all()
+    # @login_required
+    # def resolve_all_measures(self, info, **kwargs):
+    #     return Measure.objects.all()
 
     # Single Instrument query
 
@@ -56,14 +56,14 @@ class MetersQuery(ObjectType):
 
         return None
 
-    @login_required
-    def resolve_measure(self, info, **kwargs):
-        id = kwargs.get("id")
-
-        if id := kwargs.get("id"):
-            return Measure.objects.select_related("instrument").get(pk=id)
-
-        return None
+    # @login_required
+    # def resolve_measure(self, info, **kwargs):
+    #     id = kwargs.get("id")
+    #
+    #     if id := kwargs.get("id"):
+    #         return Measure.objects.select_related("instrument").get(pk=id)
+    #
+    #     return None
 
 
 class InstrumentCreateMutation(Mutation):
