@@ -24,7 +24,8 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += [
     # API base url
     path("api/", include(api)),
-    path("graphql/", jwt_cookie(GraphQLView.as_view(graphiql=True))),
+    path("graphql/", jwt_cookie(GraphQLView.as_view(graphiql=True))),   # from django.views.decorators.csrf import
+    # csrf_exempt
 ]
 
 if settings.DEBUG:
