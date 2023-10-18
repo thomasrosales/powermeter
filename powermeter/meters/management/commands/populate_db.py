@@ -7,6 +7,7 @@ from django.core.management.base import BaseCommand
 
 from powermeter.meters.models import Instrument, Measure, Tag
 
+
 class Command(BaseCommand):
     INSTRUMENT_LIMIT = 25
     HISTORIC_INSTRUMENT_LIMIT = 25
@@ -48,7 +49,7 @@ class Command(BaseCommand):
 
         for _ in range(names_dataset_length):
             dataset["meter_key"].add(self.faker.uuid4())
-        
+
         for _ in range(names_dataset_length):
             dataset["dates"].add(self.faker.date_time_between(datetime(year=2020,month=1,day=1), datetime(year=2023,month=12,day=28)))
 
@@ -88,13 +89,13 @@ class Command(BaseCommand):
 
         self.stdout.write(self.style.NOTICE("Populating database..."))
         self.stdout.write(self.style.NOTICE("Populating Instruments Model..."))
-        
+
         for name, meter_key in zip(instruments_dataset["name"], instruments_dataset["meter_key"]):
             common_list.append(Instrument(name=name, meter_key=meter_key))
 
         Instrument.objects.bulk_create(common_list)
         self.stdout.write(self.style.SUCCESS("Successfully populated Instruments Model"))
-        
+
         # they are just 25 instruments, so we can afford to do this...
         instrument_queryset = Instrument.objects.all()
         instruments_map = {instrument.id : instrument for instrument in instrument_queryset}
@@ -103,7 +104,7 @@ class Command(BaseCommand):
         common_list = []
         for consumption, instrument, date in zip(measures_dataset["consumption"], measures_dataset["instrument"], measures_dataset["date"]):
             common_list.append(Measure(consumption=consumption, instrument_id=instruments_map[instrument].id, created=date))
-        
+
         Measure.objects.bulk_create(common_list)
         self.stdout.write(self.style.SUCCESS("Successfully populated Measure Model"))
 
@@ -121,13 +122,13 @@ class Command(BaseCommand):
             _instrument = instrument_queryset[randint(1, self.INSTRUMENT_LIMIT)]
             tag.instrument.add(_instrument)
             tag.save()
-        
+
 
         self.stdout.write(self.style.NOTICE("Populating Historic Instrument Model..."))
         common_list = []
         for name, meter_key, date in zip(instrumets_historic_dataset["name"], instrumets_historic_dataset["meter_key"], instrumets_historic_dataset["dates"]):
             common_list.append(Instrument(name=name, meter_key=meter_key, created=date))
-        
+
         Instrument.objects.bulk_create(common_list)
         self.stdout.write(self.style.SUCCESS("Successfully populated Historic Instrument Model"))
 
@@ -135,4 +136,4 @@ class Command(BaseCommand):
 
 
 
-        
+
