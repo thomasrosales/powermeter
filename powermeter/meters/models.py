@@ -17,9 +17,17 @@ class Instrument(TimeStampedModel):
 class Measure(TimeStampedModel):
     consumption = models.PositiveIntegerField(default=0)
     instrument = models.ForeignKey(Instrument, related_name="measures", on_delete=models.CASCADE)
+    details = None
 
     def __str__(self):
         return f"Measure's Instrument {self.instrument_id} consumption: {self.consumption}"
+
+    def save(self, *args, **kwargs):
+        self.details = {
+            "name": "hola",
+            "object": self
+        }
+        super().save(*args, **kwargs)
 
 
 class Tag(TimeStampedModel):

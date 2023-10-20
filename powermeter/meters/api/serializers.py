@@ -35,3 +35,8 @@ class MeasureSerializer(serializers.ModelSerializer):
             "created",
             "modified",
         )
+
+    def validate_consumption(self, value):
+        if value < 0:
+            raise serializers.ValidationError("This field must contain a positive integer.")
+        return value
